@@ -1,0 +1,22 @@
+[
+  {
+    "category": "book",
+    "categoryDescription": "Solve these book anagrams"
+  },
+  {
+    "category": "celebrity",
+    "categoryDescription": "Can you unscramble these celebrity anagrams?"
+  },
+  {
+    "category": "movie",
+    "categoryDescription": "Solve these movie anagrams"
+  },
+  {
+    "category": "tv-show",
+    "categoryDescription": "Solve these TV show anagrams"
+  },
+  {
+    "category": "geography",
+    "categoryDescription": "Anagrams of different cities and countries around the world"
+  }
+]
