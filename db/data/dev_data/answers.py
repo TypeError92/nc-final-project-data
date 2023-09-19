@@ -1,15 +1,15 @@
 answers = [
   {
     "category": "movie",
+    "title": "Titanic"
+  },
+  {
+    "category": "movie",
     "title": "Avatar"
   },
   {
     "category": "movie",
     "title": "Avengers: Endgame"
-  },
-  {
-    "category": "movie",
-    "title": "Titanic"
   },
   {
     "category": "movie",

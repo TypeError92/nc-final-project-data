@@ -1,0 +1,11 @@
+{
+  "GET /api/help": {
+    "description": "serves up a json representation of all available endpoints"
+  },
+  "GET /api/questions/random/:category": {
+    "description": "serves up a random question in the given category",
+    "example_response": {
+
+    }
+  }
+}

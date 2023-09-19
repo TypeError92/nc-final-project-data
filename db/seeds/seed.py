@@ -1,4 +1,8 @@
-def seed(connection, categories, answers, users):
+def seed(connection,
+         categories,
+         answers,
+         questions,
+         users):
     cursor = connection.cursor()
     query = cursor.execute
 
@@ -18,10 +22,14 @@ def seed(connection, categories, answers, users):
     for answer in answers:
         pass
 
+    # QUESTIONS
+
     # USERS
 
     for user in users:
         pass
+
+
 
     connection.commit()
     connection.close()
