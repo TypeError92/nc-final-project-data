@@ -1,3 +1,4 @@
+
 def seed(connection,
          categories,
          answers,
@@ -28,7 +29,6 @@ def seed(connection,
 
     for user in users:
         pass
-
 
 
     connection.commit()
