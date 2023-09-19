@@ -1,4 +1,4 @@
-[
+answers = [
   {
     "category": "movie",
     "title": "Avatar"
