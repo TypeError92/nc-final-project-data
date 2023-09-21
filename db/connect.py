@@ -1,7 +1,7 @@
 import dotenv
 import os
-import psycopg2
-from psycopg2 import pool
+from psycopg2.pool import SimpleConnectionPool
+from urllib import parse
 
 from definitions import ROOT_DIR
 
@@ -15,10 +15,16 @@ def pool(env_name):
         path = ROOT_DIR + '/.env.' + env_name
         dotenv.load_dotenv(path)
         port=os.getenv('PGPORT') if os.getenv('PGPORT') else 5432
-    database = os.getenv('DATABASE_URL') if os.getenv('DATABASE_URL') else os.getenv('PGDATABASE')
-    if not database:
-        raise Exception('No database specified.')
+    if database_url := os.getenv('DATABASE_URL'):
+        parse.uses_netloc.append('postgres')
+        url = parse.urlparse(database_url)
+        pool = SimpleConnectionPool(1, 20,
+                                                   user=url.username,
+                                                   password=url.password,
+                                                   host=url.hostname,
+                                                   port=url.port)
+    elif pg_database := os.getenv('PGDATABASE'):
+        pool = SimpleConnectionPool(1, 20, dbname=pg_database, port=port)
     else:
-        print(f'Connecting @{env_name}')
-        pool = psycopg2.pool.SimpleConnectionPool(1, 20, dbname=database, port=port)
+        raise Exception('No database specified.')
     return pool
