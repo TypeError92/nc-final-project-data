@@ -1,7 +1,7 @@
 from db.dev_pool import pool
 
 def fetch_questions():
-    connection = pool.getconn()
+    connection = pool.getconn(key='fetch_questions')
     cursor = connection.cursor()
     cursor.execute(
         """
@@ -14,4 +14,5 @@ def fetch_questions():
     )
     questions = cursor.fetchall()
     connection.close()
+    pool.putconn('fetch_questions')
     return questions
