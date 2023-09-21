@@ -12,4 +12,6 @@ def fetch_questions():
         LIMIT 9;
         """
     )
-    return cursor.fetchall()
+    questions = cursor.fetchall()
+    connection.close()
+    return questions
