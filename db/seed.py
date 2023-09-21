@@ -1,4 +1,4 @@
-from db.connect import connect
+from db.connect import pool
 from importlib import import_module
 
 def seed(env_name):
@@ -8,7 +8,7 @@ def seed(env_name):
     questions = import_module(f'db.data.{env_name}.questions').questions
 
     # CONNECT TO DATABASE
-    connection = connect(env_name)
+    connection = pool(env_name).getconn()
     cursor = connection.cursor()
     query = cursor.execute
 

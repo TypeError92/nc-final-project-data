@@ -1,10 +1,11 @@
 import dotenv
 import os
 import psycopg2
+from psycopg2 import pool
 
 from definitions import ROOT_DIR
 
-def connect(env_name):
+def pool(env_name):
     if os.getenv('PYTHON_ENV') == 'SERVER':
         # Server environment
         print('Server environment detected.')
@@ -19,6 +20,5 @@ def connect(env_name):
         raise Exception('No database specified.')
     else:
         print(f'Connecting @{env_name}')
-        connection = psycopg2.connect(dbname=database,
-                                      port=port)
-    return connection
+        pool = psycopg2.pool.SimpleConnectionPool(1, 20, dbname=database, port=port)
+    return pool
