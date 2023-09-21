@@ -1,30 +1,25 @@
 import auth
+from controllers.question_controllers import get_questions
+from db.connect import pool
 from endpoints import endpoints
 from flask import Flask, make_response, request
 
 app = Flask(__name__)
 
 
+
 # TODO: Add all endpoints here.
 
-@app.route('/api/')
+@app.route('/api')
 @auth.admin
 def api():
     return endpoints
 
 
-@app.route('/api/questions/')
+@app.route('/api/questions')
 @auth.admin
 def api_questions():
-    return make_response(
-        {
-            "questions": [
-                {"question": "IN ATTIC", "answer": "TITANIC", "category": "movie"},
-                {"question": "CORKY", "answer": "ROCKY", "category": "movie"},
-                {"question": "NOT PUT", "answer": "TOP GUN", "category": "movie"}
-            ]
-        },
-        200)
+    return get_questions()
 
 
 @app.route('/api/users', methods=['POST'])
