@@ -1,19 +1,5 @@
 questions = [
-    {
-        "text": "IT AIN'T C",
-        "answer": "TITANIC"
-    },
-    {
-        "text": "I CAN'T IT",
-        "answer": "TITANIC"
-    },
-    {
-        "text": "ANTI TIC",
-        "answer": "TITANIC"
-    },
-    {
-        "text": "IN ATTIC",
-        "answer": "TITANIC"
-    },
-
+    {'question': 'IODINE TOTEM', 'answer_id': 1},
+    {'question': 'HIGHEST INN', 'answer_id': 2},
+    {'question': 'HE HIT BOB', 'answer_id': 3},
 ]

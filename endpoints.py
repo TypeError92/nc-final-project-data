@@ -60,7 +60,9 @@ endpoints = {
         "description": "creates a new user and serves up a the new user object",
         "access": "admin",
         "queries": {},
-        "example_request":
+        "example_request": {"username": "punny bunny"},
+        "example_response": {"username": "punny bunny"}
+
     },
 
     # /api/users/username

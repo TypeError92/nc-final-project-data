@@ -1,15 +1,5 @@
 questions = [
-    {
-        "anagram": "IT AIN'T C",
-        "answer": 1
-    },
-    {
-        "anagram": "I CAN'T IT",
-        "answer": 1
-    },
-{
-        "anagram": "ANTI TIC",
-        "answer": 1
-    },
-
+    {'question': 'IODINE TOTEM', 'answer_id': 1},
+    {'question': 'HIGHEST INN', 'answer_id': 2},
+    {'question': 'HE HIT BOB', 'answer_id': 3},
 ]
