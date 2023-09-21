@@ -27,7 +27,7 @@ answers = [
     "answer": "AMERICAN PSYCHO",
     "category": "book"
   },
-{
+  {
     "category": "tv show",
     "answer": "ONE TREE HILL"
   },

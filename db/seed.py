@@ -13,11 +13,13 @@ def seed(env_name):
     query = cursor.execute
 
     # DROP EXISTING TABLES
+    print('Dropping existing tables...')
     query("""DROP TABLE IF EXISTS questions;""")
     query("DROP TABLE IF EXISTS answers;")
+    print('All tables dropped!')
 
     # SEED TABLE: ANSWERS
-
+    print('Seeding answers...')
     query("CREATE TABLE answers ("
           "answer_id SERIAL PRIMARY KEY,"
           "answer VARCHAR(50),"
@@ -29,8 +31,7 @@ def seed(env_name):
               (answer, category)
               VALUES
               ('{answer['answer']}', '{answer['category']}');""")
-
-
+    print('Answers seeded!')
 
     # SEED TABLE: QUESTIONS
     query("""
