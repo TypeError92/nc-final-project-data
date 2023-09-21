@@ -17,13 +17,11 @@ def api():
 
 
 @app.route('/api/questions')
-@auth.admin
 def api_questions():
     return get_questions()
 
 
 @app.route('/api/users', methods=['POST'])
-@auth.admin
 def api_users():
     pass
 
