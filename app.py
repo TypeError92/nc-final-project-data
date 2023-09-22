@@ -1,5 +1,4 @@
 import auth
-import env_config
 from controllers.question_controllers import get_questions
 from endpoints import endpoints
 from flask import Flask, make_response, request
