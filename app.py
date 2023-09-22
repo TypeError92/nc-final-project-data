@@ -1,11 +1,10 @@
 import auth
+import env_config
 from controllers.question_controllers import get_questions
-from db.connect import pool
 from endpoints import endpoints
 from flask import Flask, make_response, request
 
 app = Flask(__name__)
-
 
 
 # TODO: Add all endpoints here.

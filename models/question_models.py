@@ -1,4 +1,4 @@
-from db.dev_pool import pool
+from db.pool import pool
 
 def fetch_questions():
     connection = pool.getconn()

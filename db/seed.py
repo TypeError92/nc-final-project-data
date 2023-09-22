@@ -1,4 +1,4 @@
-from db.connect import pool
+from db.pool import pool
 from importlib import import_module
 
 def seed(env_name):
