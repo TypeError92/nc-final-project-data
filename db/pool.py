@@ -10,7 +10,6 @@ env = os.getenv
 
 if python_env := env('PYTHON_ENV') == 'prod':
     print('Production environment detected.')
-    db_url = env('DATABASE_URL')
 
 else:
     if not python_env:
@@ -36,7 +35,7 @@ if database_url := env('DATABASE_URL'):
                                 password=url.password,
                                 host=url.hostname,
                                 port=url.port)
-if pg_database := env('PGDATABASE'):
+elif pg_database := env('PGDATABASE'):
     pool = SimpleConnectionPool(1,
                                 20,
                                 dbname=pg_database,
