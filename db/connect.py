@@ -2,8 +2,8 @@ import dotenv
 import os
 from psycopg2.pool import SimpleConnectionPool
 from urllib import parse
-
 from definitions import ROOT_DIR
+
 
 def pool(env_name):
     if os.getenv('PYTHON_ENV') == 'SERVER':
