@@ -1,11 +1,11 @@
 questions = [
-    {'question': 'IODINE TOTEM', 'answer_id': 1},
-    {'question': 'HIGHEST INN', 'answer_id': 2},
-    {'question': 'BOTH BE HIT', 'answer_id': 3},
-    {'question': 'HE HIT BELLBOY', 'answer_id': 4},
-    {'question': 'IN DRAMA KHAKIS', 'answer_id': 5},
-    {'question': 'AM A BACK BOAR', 'answer_id': 6},
-    {'question': 'CORSICA NYMPHAE', 'answer_id': 7},
-    {'question': 'TEEN HELL RIO', 'answer_id': 8},
-    {'question': 'GENT SHEW WIT', 'answer_id': 9}
+    {'question': 'IODINE TOTEM', 'answer': 'NO TIME TO DIE'},
+    {'question': 'HIGHEST INN', 'answer': 'THE SHINING'},
+    {'question': 'BOTH BE HIT', 'answer': 'THE HOBBIT'},
+    {'question': 'HE HIT BELLBOY', 'answer': 'THE HOLY BIBLE'},
+    {'question': 'IN DRAMA KHAKIS', 'answer': 'KIM KARDASHIAN'},
+    {'question': 'AM A BACK BOAR', 'answer': 'BARACK OBAMA'},
+    {'question': 'CORSICA NYMPHAE', 'answer': 'AMERICAN PSYCHO'},
+    {'question': 'TEEN HELL RIO', 'answer': 'ONE TREE HILL'},
+    {'question': 'GENT SHEW WIT', 'answer': 'THE WEST WING'}
 ]

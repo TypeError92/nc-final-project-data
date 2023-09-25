@@ -8,15 +8,16 @@ from urllib import parse
 
 env = os.getenv
 
-if python_env := env('PYTHON_ENV') == 'prod':
+if (python_env := env('PYTHON_ENV')) == 'prod':
     print('Production environment detected.')
 
 else:
-    if not python_env:
+    print('No production environment detected, configuring local environment.')
+    if python_env:
+        print(f'PYTHON_ENV "{python_env}" detected.')
+    else:
         print('No PYTHON_ENV detected, defaulting to "dev".')
         python_env = 'dev'
-
-    print('No production environment detected, configuring local environment.')
     path = os.path.join(root, '.env.' + python_env)
     print('Loading .env from', path)
     dotenv.load_dotenv(path)

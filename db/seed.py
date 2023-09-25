@@ -24,8 +24,7 @@ def seed():
     # SEED TABLE: ANSWERS
     print('Seeding answers...')
     query("CREATE TABLE answers ("
-          "answer_id SERIAL PRIMARY KEY,"
-          "answer VARCHAR(50),"
+          "answer VARCHAR(50) PRIMARY KEY,"
           "category VARCHAR(20)"
           ");")
 
@@ -39,17 +38,16 @@ def seed():
     # SEED TABLE: QUESTIONS
     query("""
     CREATE TABLE questions (
-        question_id SERIAL PRIMARY KEY,
-        question VARCHAR(50),
-        answer_id INT REFERENCES answers
+        question VARCHAR(50) PRIMARY KEY,
+        answer VARCHAR(50) REFERENCES answers
         );
     """)
 
     for question in questions:
         query(f"""INSERT INTO questions
-              (question, answer_id)
+              (question, answer)
               VALUES
-              ('{question['question']}', '{question['answer_id']}');""")
+              ('{question['question']}', '{question['answer']}');""")
 
 
     # FINALISE
