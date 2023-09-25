@@ -1,14 +1,17 @@
-from db.pool import pool
+import os
 from importlib import import_module
+from db.pool import pool
 
-def seed(env_name):
+
+def seed():
+    env_name = os.getenv('PYTHON_ENV')
     print(f'Seeding @{env_name}')
     # LOAD DATA
     answers = import_module(f'db.data.{env_name}.answers').answers
     questions = import_module(f'db.data.{env_name}.questions').questions
 
     # CONNECT TO DATABASE
-    connection = pool(env_name).getconn()
+    connection = pool.getconn()
     cursor = connection.cursor()
     query = cursor.execute
 

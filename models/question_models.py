@@ -17,3 +17,21 @@ def fetch_questions():
     connection.close()
     pool.putconn(connection)
     return questions
+
+
+def insert_questions(questions):
+    connection = pool.getconn()
+    cursor = connection.cursor()
+
+    cursor.execute(
+        """
+        SELECT question, answer, category
+        FROM questions
+        JOIN answers
+        ON questions.answer_id = answers.answer_id
+        LIMIT 9;
+        """
+    )
+
+    connection.close()
+    pool.putconn(connection)
