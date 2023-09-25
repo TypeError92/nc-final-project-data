@@ -1,5 +1,6 @@
 from db.pool import pool
 
+
 def fetch_questions():
     connection = pool.getconn()
     cursor = connection.cursor()
