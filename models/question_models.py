@@ -19,22 +19,25 @@ def fetch_questions():
     return questions
 
 
-def insert_questions(questions):
+def insert_questions(questions: list[tuple[str, str], ...]):
+    inserted_questions = []
     connection = pool.getconn()
     cursor = connection.cursor()
-    for (question, answer) in questions:
+    for question in questions:
         try:
             cursor.execute(
-                """
-                SELECT question, answer, category
-                FROM questions
-                JOIN answers
-                ON questions.answer_id = answers.answer_id
-                LIMIT 9;
-                """
+                f"""
+                INSERT INTO questions (
+                    question, answer
+                )
+                VALUES (%s, %s);
+                """,
+                question
             )
+            inserted_questions.append(question)
         except psycopg2.errors.UniqueViolation:
             print(f'"{question}" is a duplicate and will be ignored.')
 
     connection.close()
     pool.putconn(connection)
+    return inserted_questions
