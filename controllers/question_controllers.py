@@ -2,7 +2,7 @@ import ast
 import openai
 import os
 from models import fetch_answers, fetch_questions
-from controllers.utils import is_anagram
+from controllers.utils import is_anagram, is_good_anagram
 
 
 def get_questions():
@@ -34,7 +34,7 @@ def get_new_questions():
     )
 
     anagrams = ast.literal_eval(response['choices'][0]['message']['content'])
-    print(anagrams, type(anagrams))
-    question_answer_pairs = list(zip(anagrams, answers))
-    question_answer_pairs = list(filter(is_anagram, question_answer_pairs))
+    question_answer_pairs = zip(anagrams, answers)
+    question_answer_pairs = filter(is_anagram, question_answer_pairs)
+    question_answer_pairs = list(filter(is_good_anagram, question_answer_pairs))
     print(question_answer_pairs)
