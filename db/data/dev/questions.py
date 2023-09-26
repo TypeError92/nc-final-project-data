@@ -1,3 +1,4 @@
-from parser import rows
+from csv import DictReader
 
-questions = list(map(lambda row: {'question': row['question'], 'answer': row['answer']}, rows))
+with open('anagrams.csv', newline='') as file:
+    questions = list(map(lambda row: {'question': row['question'], 'answer': row['answer']}, DictReader(file)))
