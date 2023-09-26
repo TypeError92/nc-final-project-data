@@ -55,7 +55,7 @@ def seed():
     CREATE TABLE users (
         user_id VARCHAR(28) PRIMARY KEY,
         username VARCHAR(20),
-        avatar_id INT
+        avatar_url TEXT
         );
     """)
 
