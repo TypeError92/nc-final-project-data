@@ -19,6 +19,7 @@ def seed():
     print('Dropping existing tables...')
     query("""DROP TABLE IF EXISTS questions;""")
     query("DROP TABLE IF EXISTS answers;")
+    query("DROP TABLE IF EXISTS users")
     print('All tables dropped!')
 
     # SEED TABLE: ANSWERS
@@ -48,6 +49,15 @@ def seed():
               (question, answer)
               VALUES
               ('{question['question']}', '{question['answer']}');""")
+
+    # SEED TABLE: USERS
+    query("""
+    CREATE TABLE users (
+        user_id VARCHAR(28) PRIMARY KEY,
+        username VARCHAR(20),
+        avatar_id INT
+        );
+    """)
 
 
     # FINALISE
