@@ -1,4 +1,5 @@
 import auth
+from controllers.dev_controllers import get_num_of_connections
 from controllers.question_controllers import get_questions
 from endpoints import endpoints
 from flask import Flask, make_response, request
@@ -17,6 +18,12 @@ def api():
 @app.route('/api/questions')
 def api_questions():
     return get_questions()
+
+
+@app.route('/api/stats/num-of-connections')
+@auth.admin
+def stats_num_of_connections():
+    return get_num_of_connections()
 
 
 @app.route('/api/users', methods=['POST'])

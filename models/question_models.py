@@ -1,15 +1,16 @@
 import psycopg2.errors
 from db.pool import pool
 
+
 def fetch_questions():
     connection = pool.getconn()
     cursor = connection.cursor()
     cursor.execute(
         """
-        SELECT question, answer, category
+        SELECT question, questions.answer, category
         FROM questions
         JOIN answers
-        ON questions.answer_id = answers.answer_id
+        ON questions.answer = answers.answer
         LIMIT 9;
         """
     )
