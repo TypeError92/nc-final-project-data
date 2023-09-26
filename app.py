@@ -1,6 +1,6 @@
 import auth
 from controllers.dev_controllers import get_num_of_connections
-from controllers.question_controllers import get_questions
+from controllers import get_questions, get_user, post_user
 from endpoints import endpoints
 from flask import Flask, make_response, request
 
@@ -26,23 +26,14 @@ def stats_num_of_connections():
     return get_num_of_connections()
 
 
-@app.route('/api/users', methods=['POST'])
-def api_users():
-    pass
+@app.route('/api/users/sign-in', methods=['POST'])
+def api_users_sign_in():
+    return get_user(request)
 
 
-@app.route('/api/users/<username>', methods=['GET', 'PATCH', 'DELETE'])
-@auth.user
-def api_users__username(username):
-    if request.method == 'GET':
-        return make_response(
-            {"user": {"username": username}},
-            200
-        )
-    elif request.method == 'PATCH':
-        pass
-    elif request.method == 'DELETE':
-        pass
+@app.route('/api/users/sign-up', methods=['POST'])
+def api_users_sign_up():
+    return post_user(request)
 
 
 @app.route('/api/leaderboard', methods=['GET'])
