@@ -1,4 +1,5 @@
 from db.pool import pool
+from random import sample
 
 
 def fetch_answers():
@@ -7,11 +8,10 @@ def fetch_answers():
     cursor.execute(
         """
         SELECT answer
-        FROM answers
-        LIMIT 9;
+        FROM answers;
         """
     )
-    questions = cursor.fetchall()
+    answers = cursor.fetchall()
     connection.close()
     pool.putconn(connection)
-    return questions
+    return sample(answers, k=9)

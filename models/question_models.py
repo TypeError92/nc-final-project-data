@@ -1,5 +1,6 @@
 import psycopg2.errors
 from db.pool import pool
+from random import sample
 
 
 def fetch_questions():
@@ -10,14 +11,13 @@ def fetch_questions():
         SELECT question, questions.answer, category
         FROM questions
         JOIN answers
-        ON questions.answer = answers.answer
-        LIMIT 9;
+        ON questions.answer = answers.answer;
         """
     )
     questions = cursor.fetchall()
     connection.close()
     pool.putconn(connection)
-    return questions
+    return sample(questions, k=9)
 
 
 def insert_questions(questions: list[tuple[str, str], ...]):
