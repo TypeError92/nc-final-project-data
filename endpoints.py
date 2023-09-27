@@ -111,11 +111,5 @@ endpoints = {
             "username": "punny bunny",
             "avatar_url": "profile/pic/path"
         }
-    },
-    "PATCH /api/users/username": {
-        "description": "patches an existing user"
-    },
-    "DELETE /api/users/username": {
-        "description": "deletes a user"
     }
 }
