@@ -38,7 +38,7 @@ endpoints = {
 
     # /API/USERS
 
-    "GET /API/USERS": {
+    "GET /api/users": {
         "description": "serves up a list of all existing users",
         "requires authentication": True,
         "queries": {
