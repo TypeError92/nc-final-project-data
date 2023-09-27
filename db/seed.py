@@ -26,14 +26,15 @@ def seed():
     print('Seeding answers...')
     query("CREATE TABLE answers ("
           "answer VARCHAR(50) PRIMARY KEY,"
-          "category VARCHAR(20)"
+          "category VARCHAR(20),"
+          "subcategory VARCHAR(25)"
           ");")
 
     for answer in answers:
         query(f"""INSERT INTO answers
-              (answer, category)
+              (answer, category, subcategory)
               VALUES
-              ('{answer['answer']}', '{answer['category']}');""")
+              ('{answer['answer']}', '{answer['category']}', '{answer['subcategory']}');""")
     print('Answers seeded!')
 
     # SEED TABLE: QUESTIONS

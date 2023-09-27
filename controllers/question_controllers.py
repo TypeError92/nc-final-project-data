@@ -4,6 +4,17 @@ import os
 from models import fetch_answers, fetch_questions, insert_questions
 from controllers.utils import is_good_anagram
 
+
+def get_questions():
+    def build_obj(question, answer, category, subcategory):
+        return {'question': question,
+                'answer': answer,
+                'category': category,
+                'subcategory': subcategory}
+    questions = list(map(lambda item: build_obj(*item), fetch_questions()))
+    return questions
+
+
 """
 Unfortunately, this code is not used in the final version. Our goal was to dynamically generate new questions by
 feeding answers from our database to an OpenAI model and have it find matching anagrams. However, we had to find
@@ -16,15 +27,6 @@ training our own model specifically for the purpose of generating anagrams.
 We decided to leave the code in this repo for illustrative purposes and in case we get to keep working on this project
 in the future.
 """
-
-
-def get_questions():
-    def build_obj(question, answer, category):
-        return {'question': question,
-                'answer': answer,
-                'category': category}
-    questions = list(map(lambda item: build_obj(*item), fetch_questions()))
-    return questions
 
 
 def get_new_questions():

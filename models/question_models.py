@@ -8,7 +8,7 @@ def fetch_questions():
     cursor = connection.cursor()
     cursor.execute(
         """
-        SELECT question, questions.answer, category
+        SELECT question, questions.answer, category, subcategory
         FROM questions
         JOIN answers
         ON questions.answer = answers.answer;
