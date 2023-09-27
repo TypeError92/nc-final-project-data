@@ -27,7 +27,7 @@ def insert_user(user_id, username, avatar_url):
     cursor.execute(
         f"""
             INSERT INTO users (
-                user_id, username, avatar_id
+                user_id, username, avatar_url
             )
             VALUES (%s, %s, %s);
             """,
