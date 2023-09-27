@@ -1,8 +1,6 @@
 from db.pool import pool
 
 
-
-
 def fetch_user(user_id):
     connection = pool.getconn()
     cursor = connection.cursor()

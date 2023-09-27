@@ -45,9 +45,10 @@ def seed():
     """)
 
     for question in questions:
-        query(f"""INSERT INTO questions
+        query(f"""
+            INSERT INTO questions
               (question, answer)
-              VALUES
+            VALUES
               ('{question['question']}', '{question['answer']}');""")
 
     # SEED TABLE: USERS

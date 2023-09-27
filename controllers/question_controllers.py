@@ -4,6 +4,19 @@ import os
 from models import fetch_answers, fetch_questions, insert_questions
 from controllers.utils import is_good_anagram
 
+"""
+Unfortunately, this code is not used in the final version. Our goal was to dynamically generate new questions by
+feeding answers from our database to an OpenAI model and have it find matching anagrams. However, we had to find
+that the model did not return enough usable results no matter what prompt was used or how often it was corrected.
+Most suggestions were not anagrams at all, others merely switched the order of *words* in the input without changing
+the order of *letters* within or between words; the overall success rate was below 10%. We therefore decided to drop
+the idea for the time being and build our own database of questions. With more time, we would have liked to look into
+training our own model specifically for the purpose of generating anagrams.
+
+We decided to leave the code in this repo for illustrative purposes and in case we get to keep working on this project
+in the future.
+"""
+
 
 def get_questions():
     def build_obj(question, answer, category):
