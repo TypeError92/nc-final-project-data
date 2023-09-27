@@ -55,7 +55,9 @@ def seed():
     CREATE TABLE users (
         user_id VARCHAR(28) PRIMARY KEY,
         username VARCHAR(20),
-        avatar_url TEXT
+        avatar_url TEXT,
+        highscore INT DEFAULT 0,
+        lifetime_socre INT DEFAULT 0;
         );
     """)
 
