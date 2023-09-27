@@ -1,6 +1,6 @@
 from auth import auth
 from controllers.dev_controllers import get_num_of_connections
-from controllers import get_questions, get_user, patch_scores, post_user
+from controllers import get_questions, get_user, get_users, patch_scores, post_user
 from endpoints import endpoints
 from flask import Flask, make_response, request
 
@@ -26,11 +26,15 @@ def api_questions():
 def stats_num_of_connections():
     return get_num_of_connections()
 
+@app.route('/api/users')
+@auth
+def api_users():
+    return get_users(request)
+
 @app.route('/api/users/new-score', methods=['PATCH'])
 @auth
 def api_users_new_score():
     return patch_scores(request)
-
 
 
 @app.route('/api/users/sign-in', methods=['POST'])

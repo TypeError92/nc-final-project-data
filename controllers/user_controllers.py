@@ -1,9 +1,15 @@
-from models import fetch_user, insert_user, update_high_score, update_lifetime_score
+from models import fetch_user, fetch_users, insert_user, update_high_score, update_lifetime_score
 
 
 def get_user(req):
     body = req.get_json()
     return fetch_user(body['user_id'])
+
+
+def get_users(req):
+    order_by = req.args['order_by'] if 'order_by' in req.args.keys() else 'user_id'
+    print(order_by)
+    return fetch_users(order_by)
 
 
 def patch_scores(req):

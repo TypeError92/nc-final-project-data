@@ -24,6 +24,30 @@ def fetch_user(user_id):
         'lifetime_score': lifetime_score
     }
 
+def fetch_users(order_by):
+    connection = pool.getconn()
+    cursor = connection.cursor()
+    cursor.execute(
+        f"""
+                SELECT * FROM users
+                ORDER BY {order_by} DESC;
+                """,
+    )
+    user_rows = cursor.fetchall()
+    connection.commit()
+    connection.close()
+    pool.putconn(connection)
+    users = []
+    for (user_id, username, avatar_url, high_score, lifetime_score) in user_rows:
+        users.append({
+        'user_id': user_id,
+        'username': username,
+        'avatar_url': avatar_url,
+        'high_score': high_score,
+        'lifetime_score': lifetime_score
+    })
+    return users
+
 
 def insert_user(user_id, username, avatar_url):
     connection = pool.getconn()
