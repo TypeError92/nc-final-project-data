@@ -53,7 +53,7 @@ def get_leaderboard():
 
 
 @app.route('/api/leaderboard', methods=['PATCH'])
-@auth.admin
+@auth
 # TODO: accept user/score pairs in request body
 def patch_leaderboard():
     return make_response(
