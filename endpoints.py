@@ -3,71 +3,114 @@ endpoints = {
     # /API
 
     "GET /api": {
-        "description": "serves up a json representation of all available endpoints",
-        "access": "any",
+        "description": "Serves up a json representation of all available endpoints.",
+        "requires authentication": False,
         "queries": {}
     },
 
-    # /API/LEADERBOARD
+    # /API/QUESTIONS
 
-    "GET /api/leaderboard": {
-        "access": "any",
-        "description": "serves up an array representation of the current leaderboard",
-        "queries": {"limit": {"description": "number of entries to be returned;"
-                                             "if omitted, the entire leaderboard will be returned",
-                              "type": "integer",
-                              "default": None},
-                    "page": {"description": "page of leaderboard to be returned;"
-                                            "will only be considered in combination with a 'limit' query",
-                             "type": "integer",
-                             "default": 1}},
-        "example_response": {"entries": [
-            {"rank": 1, "username": "phil", "score": 1234},
-            {"rank": 2, "username": "charlotte", "score": 1111},
-            {"rank": 3, "username": "chris", "score": 999}
-        ]}
-    },
-
-    "PATCH /api/leaderboard": {
-        "access": "admin",
-        "description": "submits player scores to update leaderbo",
-        "queries": {"limit": {"description": "number of entries to be returned;"
-                                             "if omitted, the entire leaderboard will be returned",
-                              "type": "integer",
-                              "default": None},
-                    "page": {"description": "page of leaderboard to be returned;"
-                                            "will only be considered in combination with a 'limit' query",
-                             "type": "integer",
-                             "default": 1}},
-        "example_response": {"entries": [
-                {"rank": 1, "username": "phil", "score": 1234},
-                {"rank": 2, "username": "charlotte", "score": 1111},
-                {"rank": 3, "username": "chris", "score": 999}
-            ]}
-    },
     "GET /api/questions/": {
-        "description": "serves up a list of question/answer pairs",
-        "queries": ["category_name", "number", "game_id"],
-        "example_response": {
-            "questions": [
-                {"question": "IN ATTIC", "answer": "TITANIC", "category": "movie"},
-                {"question": "CORKY", "answer": "ROCKY", "category": "movie"},
-                {"question": "NOT PUT", "answer": "TOP GUN", "category": "movie"}
-            ]
+        "description": "serves up a list of 9 questions",
+        "requires authentication": True,
+        "queries" : {},
+        "example response": [
+            {'question': 'IODINE TOTEM', 'answer': 'NO TIME TO DIE'},
+            {'question': 'HIGHEST INN', 'answer': 'THE SHINING'},
+            {'question': 'BOTH BE HIT', 'answer': 'THE HOBBIT'},
+            {'question': 'HE HIT BELLBOY', 'answer': 'THE HOLY BIBLE'},
+            {'question': 'IN DRAMA KHAKIS', 'answer': 'KIM KARDASHIAN'},
+            {'question': 'AM A BACK BOAR', 'answer': 'BARACK OBAMA'},
+            {'question': 'CORSICA NYMPHAE', 'answer': 'AMERICAN PSYCHO'},
+            {'question': 'TEEN HELL RIO', 'answer': 'ONE TREE HILL'},
+            {'question': 'GENT SHEW WIT', 'answer': 'THE WEST WING'}
+        ]
+    },
+
+    # /API/STATS
+
+    "GET /api/stats/num-of-connections": {
+        "description": "serves up the current number of open connections to the database",
+        "requires authentication": True,
+        "queries": {},
+        "example response": 139
+    },
+
+    # /API/USERS
+
+    "GET /API/USERS": {
+        "description": "serves up a list of all existing users",
+        "requires authentication": True,
+        "queries": {
+            "order_by": {
+                "required": False,
+                "options": [
+                    "user_id",
+                    "username",
+                    "avatar_url",
+                    "high_score",
+                    "lifetime_score"
+                ],
+                "default": "user_id"
+            }
+        },
+        "example response": [
+            {
+                "user_id": "provided_by_firebase",
+                "username": "punny bunny",
+                "avatar_url": "profile/pic/path"
+            },
+            {
+                "user_id": "also_provided_by_firebase",
+                "username": "sunny honey",
+                "avatar_url": "other/profile/pic/path"
+            }
+        ]
+    },
+
+    "POST /api/users/new-score": {
+        "description": "posts a user's latest score to the database and updates high score if appropriate",
+        "requires authentication": True,
+        "queries": {},
+        "example request": {
+            "user_id": "provided_by_firebase",
+            "score": 2222
+        },
+        "example response": {
+            "user_id": "3",
+            "new_high_score": True,
+            "new_lifetime_score": 8888,
+            "score": 2222},
+    },
+
+    "POST /api/users/sign-up": {
+        "description": "adds a new user to the database and serves up a the new user object",
+        "requires authentication": True,
+        "queries": {},
+        "example request": {
+            "user_id": "provided_by_firebase",
+            "username": "punny bunny",
+            "avatar_url": "profile/pic/path"
+        },
+        "example response": {
+            "user_id": "provided_by_firebase",
+            "username": "punny bunny",
+            "avatar_url": "profile/pic/path"
         }
     },
-    "POST /api/users": {
-        "description": "creates a new user and serves up a the new user object",
-        "access": "admin",
+
+    "POST /api/users/sign-in": {
+        "description": "serves up an existing user object matching the provided user_id",
+        "requires authentication": True,
         "queries": {},
-        "example_request": {"username": "punny bunny"},
-        "example_response": {"username": "punny bunny"}
-
-    },
-
-    # /api/users/username
-    "GET /api/users/username": {
-        "description": "returns an existing user"
+        "example request": {
+            "user_id": "provided_by_firebase"
+        },
+        "example response": {
+            "user_id": "provided_by_firebase",
+            "username": "punny bunny",
+            "avatar_url": "profile/pic/path"
+        }
     },
     "PATCH /api/users/username": {
         "description": "patches an existing user"

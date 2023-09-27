@@ -10,9 +10,10 @@ def fetch_num_of_connections():
         FROM pg_stat_activity;
         """
     )
-    open_connections = cursor.fetchall()
+    open_connections = cursor.fetchall()[0][0]
     connection.close()
     pool.putconn(connection)
     return open_connections
+
 
 print(fetch_num_of_connections())

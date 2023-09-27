@@ -96,7 +96,7 @@ def update_lifetime_score(user_id, score):
             RETURNING lifetime_score;
         """
     )
-    new_lifetime_score = cursor.fetchall()[0]
+    new_lifetime_score = cursor.fetchall()[0][0]
     # Update lifetime score
     connection.commit()
     connection.close()

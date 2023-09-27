@@ -22,7 +22,11 @@ def patch_scores(req):
     else:
         new_high_score = False
     new_lifetime_score = update_lifetime_score(user_id, score)
-    return {'user_id': user_id, 'score': score, 'new_high_score': new_high_score, 'new_lifetime_score': new_lifetime_score}
+    return {
+        'user_id': user_id,
+        'score': score,
+        'new_high_score': new_high_score,
+        'new_lifetime_score': new_lifetime_score}
 
 
 def post_user(req):
