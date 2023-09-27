@@ -57,7 +57,7 @@ def seed():
         username VARCHAR(20),
         avatar_url TEXT,
         high_score INT DEFAULT 0,
-        lifetime_score INT DEFAULT 0;
+        lifetime_score INT DEFAULT 0
         );
     """)
 

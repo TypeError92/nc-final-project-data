@@ -54,7 +54,7 @@ def update_high_score(user_id, score):
         f"""
             UPDATE users
             SET high_score = {score}
-            WHERE user_id = {user_id};
+            WHERE user_id = '{user_id}';
             """
 )
     # Update lifetime score
@@ -70,7 +70,7 @@ def update_lifetime_score(user_id, score):
         f"""
             UPDATE users
             SET lifetime_score = lifetime_score + {score}
-            WHERE user_id = {user_id}
+            WHERE user_id = '{user_id}'
             RETURNING lifetime_score;
         """
     )

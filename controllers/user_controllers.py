@@ -9,7 +9,7 @@ def get_user(req):
 def patch_scores(req):
     body = req.get_json()
     user_id, score = body['user_id'], body['score']
-    user = get_user(user_id)
+    user = fetch_user(user_id)
     if score > user['high_score']:
         new_high_score = True
         update_high_score(user_id, score)
